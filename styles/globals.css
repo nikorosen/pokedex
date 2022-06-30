@@ -17,15 +17,3 @@ a {
   box-sizing: border-box;
 }
 
-@value rock: #BBAA66;
-@value ghost: #6666BA;
-@value steel: #AAAABB;
-@value water: #3399FE;
-@value grass: #76CC55;
-@value pyschic #FF5599;
-@value normal: #AAAA9B;
-@value fighting: #BA5544;
-@value flying: #8799FF;
-@value posion: #AA5599;
-@value ground: #DDBB54;
-@value bug: #A9BB22;
