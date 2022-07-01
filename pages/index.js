@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -5,6 +6,10 @@ import Layout from '../components/Layout'
 import PokemonCardContainer from '../components/PokemonCardContainer.js'
 
 export default function Home(props) {
+
+  const [currentPokemon, setCurrentPokemon] = useState({});
+  const [showDetails, setShowDetails] = useState(false);
+
   return (
     <Layout>
       <Head>
@@ -14,7 +19,12 @@ export default function Home(props) {
       </Head>
 
       {/* {console.log(props.details)} */}
-      <PokemonCardContainer data={props.data}/>
+      <PokemonCardContainer 
+      currentPokemon={currentPokemon}
+      setCurrentPokemon={setCurrentPokemon}
+      showDetails={showDetails}
+      setShowDetails={setShowDetails}
+      data={props.data}/>
       
     </Layout>
   )

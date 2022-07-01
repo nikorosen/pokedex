@@ -1,10 +1,20 @@
 import PokemonCard from './PokemonCard';
+import Details from './Details';
+import {useEffect} from 'react';
 
 export default function PokemonCardContainer(props) {
-    console.log(props.data);
+    
+    useEffect(() => {
+        console.log('current pokemon: ')
+        console.log(props.currentPokemon)
+      },[props.currentPokemon])
+    
     const pokemon = props.data.results;
+    let show = true;
 
     return <div>
-        {pokemon.map( i => <PokemonCard endpoint={i['url']}/>)}
+        {props.showDetails ? <Details show={show} currentPokemon={props.currentPokemon}/> : ''}
+        {pokemon.map( i => <PokemonCard setShowDetails={props.setShowDetails} setCurrentPokemon={props.setCurrentPokemon} endpoint={i['url']}/>)}
+        
     </div>
 }
