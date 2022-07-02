@@ -27,16 +27,18 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <CapturePopup
+      {props.showPopup ? <CapturePopup
       currentPokemon={props.currentPokemon}
       capturedPokemon={props.capturedPokemon}
-      setCapturedPokemon={props.setCapturedPokemon}/>
+      setCapturedPokemon={props.setCapturedPokemon}/> : ''}
 
       <PokemonCardContainer 
       currentPokemon={props.currentPokemon}
       setCurrentPokemon={props.setCurrentPokemon}
       showDetails={props.showDetails}
       setShowDetails={props.setShowDetails}
+      showPopup={props.showPopup}
+      setShowPopup={props.setShowPopup}
       data={props.data}/>
 
       

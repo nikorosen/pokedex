@@ -63,6 +63,22 @@ export default function Details(props) {
             <td> {speed}</td>
         </tr></table></div>
         
-        <button>Capture</button>
+        { true ? <><h2>Capture Information</h2>
+        <table>
+            <tr>
+                <th>Nickname: </th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Captured on: </th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Captured level: </th>
+                <td></td>
+            </tr>
+        </table></> : ''}
+        
+        <button onClick={e => props.setShowPopup(!props.showPopup)}>Capture</button>
     </div>
 }

@@ -9,7 +9,7 @@ import Link from 'next/Link';
 export default function Layout({ children }) {
   return (
     <>
-        <Image alt='logo' src='/pokedex-logo.png' width='100' height='50' layout='fixed'/>
+        <Link href='/'><Image alt='logo' src='/pokedex-logo.png' width='100' height='50' layout='fixed'/></Link>
         <Link href='/captured'>Captured Pokemon</Link>
         <main>{children}</main>
         

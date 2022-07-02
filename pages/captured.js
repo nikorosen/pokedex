@@ -11,6 +11,8 @@ export default function Captured(props) {
       </Head>
 
       <CapturedPokemonCardContainer
-      capturedPokemon={props.capturedPokemon}/>
+      capturedPokemon={props.capturedPokemon}
+      showPopup={props.showPopup}
+      setShowPopup={props.setShowPopup}/>
     </>
 }
