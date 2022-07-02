@@ -14,7 +14,7 @@ export default function PokemonCardContainer(props) {
 
     return <div>
         {props.showDetails ? <Details show={show} currentPokemon={props.currentPokemon}/> : ''}
-        {pokemon.map( i => <PokemonCard setShowDetails={props.setShowDetails} setCurrentPokemon={props.setCurrentPokemon} endpoint={i['url']}/>)}
+        {pokemon.map( i => <PokemonCard key={i['url']} setShowDetails={props.setShowDetails} setCurrentPokemon={props.setCurrentPokemon} endpoint={i['url']}/>)}
         
     </div>
 }

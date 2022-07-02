@@ -9,6 +9,7 @@ export default function Details(props) {
         }}, [props.currentPokemon]);
 
     const data = props.currentPokemon;
+    
     const height = data.height;
     const types = data.types.map(i => i.type.name);
     const weight = data.weight;
@@ -16,12 +17,13 @@ export default function Details(props) {
     const [hp, attack, defense, sattack, sdefense, speed] = data.stats.map(i => i.base_stat);
     
 
-    return <>
+    return <div>
         <Image src={img} width="100" height="100"></Image>
         <div><h2>About</h2>
+        <table>
         <tr>
             <th>Types(s):</th> 
-            <td>{types.map(i => <> {i} </>)}</td> 
+            <td>{types.map(i => <span key={i}> {i} </span>)}</td> 
         </tr>
         <tr>
             <th>Weight:</th>
@@ -29,14 +31,17 @@ export default function Details(props) {
         </tr>
         <tr>
             <th>Height:</th> 
-            <td>{height * 0.1} m</td>
-        </tr></div>
+            <td>{(height * 0.1).toFixed(1)} m</td>
+        </tr>
+        </table></div>
         <div>
         <h2>Base Stats</h2>
+        <table>
         <tr>
             <th>HP:</th>
             <td> {hp}</td>
         </tr>
+        
         <tr>
             <th>Attack:</th>
             <td> {attack}</td>
@@ -56,7 +61,8 @@ export default function Details(props) {
         <tr>
             <th>Speed:</th>
             <td> {speed}</td>
-        </tr></div>
+        </tr></table></div>
+        
         <button>Capture</button>
-    </>
+    </div>
 }

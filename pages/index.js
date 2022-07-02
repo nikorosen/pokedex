@@ -4,11 +4,14 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout'
 import PokemonCardContainer from '../components/PokemonCardContainer.js'
+import CapturePopup from '../components/CapturePopup';
 
 export default function Home(props) {
 
   const [currentPokemon, setCurrentPokemon] = useState({});
+  const [capturedPokemon, setCapturedPokemon] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <Layout>
@@ -18,13 +21,19 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* {console.log(props.details)} */}
+      <CapturePopup
+      currentPokemon={currentPokemon}
+      capturedPokemon={capturedPokemon}
+      setCapturedPokemon={setCapturedPokemon}/>
+
       <PokemonCardContainer 
       currentPokemon={currentPokemon}
       setCurrentPokemon={setCurrentPokemon}
       showDetails={showDetails}
       setShowDetails={setShowDetails}
       data={props.data}/>
+
+      
       
     </Layout>
   )

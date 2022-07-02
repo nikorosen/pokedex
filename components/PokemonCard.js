@@ -22,6 +22,6 @@ export default function PokemonCard(props) {
     return <div className={styles.card} onClick={handleClick}>
         <Image src={img} width="100" height="100"></Image>
         <h2>#{data.order} {data.name}</h2>
-        {types.map(i => <li>{i}</li>)} 
+        {types.map(i => <span key={i}> {i} </span> )} 
     </div>
 }
