@@ -2,9 +2,6 @@ import CapturedPokemonCard from './CapturedPokemonCard'
 import CapturedPokemonCardWeb from './CapturedPokemonCardWeb'
 
 export default function CapturedPokemonCardContainer(props) {
-
-    //console.log(props.capturedPokemon);
-
     return <>
         <ul>
             {props.capturedPokemon.map(i => <CapturedPokemonCard

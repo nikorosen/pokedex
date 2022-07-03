@@ -1,12 +1,20 @@
 import Image from 'next/image';
 import {useEffect} from 'react';
+import getAllStorage from '../util/getAllStorage';
 
 export default function Details(props) {
 
     useEffect(() => {
         if (props.currentPokemon !== {}) {
             console.log(data)
-        }}, [props.currentPokemon]);
+        
+            props.setCapturedPokemon(getAllStorage())
+            const interval = setInterval(() => {
+            props.setCapturedPokemon(getAllStorage())
+            }, 5000);
+
+            return () => clearInterval(interval);
+        }}, []);
 
     const data = props.currentPokemon;
     
@@ -66,7 +74,7 @@ export default function Details(props) {
         
         { props.capturedPokemon.some( e => e.order == order) ? <><h2>Capture Information</h2>
         <table>
-        { props.capturedPokemon.map( i => <table>
+        { props.capturedPokemon.filter(i => i.order == order).map( i => <table>
            { i.nickname != '' ? <tr>
                 <th>Nickname: </th>
                 <td>{i.nickname}</td> 

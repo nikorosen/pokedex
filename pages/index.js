@@ -76,6 +76,7 @@ export default function Home(props) {
       showPopup={props.showPopup}
       setShowPopup={props.setShowPopup}
       capturedPokemon={props.capturedPokemon}
+      setCapturedPokemon={props.setCapturedPokemon}
       data={pokemon}/>
       </InfiniteScroll>
     </>

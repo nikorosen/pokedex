@@ -1,29 +1,13 @@
 import Head from 'next/head'
 import CapturedPokemonCardContainer from '../components/CapturedPokemonCardContainer'
 import { useEffect } from 'react';
+import getAllStorage from '../util/getAllStorage';
 
 export default function Captured(props) {
 
-    // returns all pokemon values from localstorage
-    function allStorage() {
-
-        if (typeof window !== 'undefined') {
-            var values = [],
-                keys = Object.keys(localStorage),
-                i = keys.length;
-
-            while (i--) {
-                ('order' in JSON.parse(localStorage.getItem(keys[i]))) ?
-                    values.push(JSON.parse(localStorage.getItem(keys[i]))) : console.log('error');
-            }
-
-            return values;
-        }
-    }
-
     // wait until localstorage can be accessed
     useEffect(() => {
-        props.setCapturedPokemon(allStorage())
+        props.setCapturedPokemon(getAllStorage())
     }
         , []);
 

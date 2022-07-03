@@ -16,7 +16,8 @@ export default function PokemonCardContainer(props) {
             showPopup={props.showPopup}
             setShowPopup={props.setShowPopup}
             currentPokemon={props.currentPokemon}
-            capturedPokemon={props.capturedPokemon} /> : ''}
+            capturedPokemon={props.capturedPokemon}
+            setCapturedPokemon={props.setCapturedPokemon} /> : ''}
         {pokemon.map(i => <PokemonCard key={`${i['url']}${Math.random}`} 
         setShowDetails={props.setShowDetails} 
         setCurrentPokemon={props.setCurrentPokemon} 

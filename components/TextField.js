@@ -25,13 +25,6 @@ export default function TextField(props) {
         const newCapturedPokemon = { ...props.currentPokemon, ...capturedInfo }
 
         window.localStorage.setItem(newCapturedPokemon.name, JSON.stringify(newCapturedPokemon));
- /*        let newObj = window.localStorage.getItem(newCapturedPokemon.id);
-        console.log("stored");
-        console.log(JSON.parse(newObj));
-
-        props.setCapturedPokemon(props.capturedPokemon.concat(
-            newCapturedPokemon
-        )); */
     }
 
     return <form onSubmit={handleSubmit}>
@@ -44,12 +37,14 @@ export default function TextField(props) {
             type="date"
             id={'capturedDate'}
             placeholder="Captured Date"
-            ref={dateRef} />
+            ref={dateRef} 
+            required/>
         <input
             type="text"
             id={'capturedLevel'}
             placeholder="Captured Level"
-            ref={levelRef} />
+            ref={levelRef} 
+            required/>
         <button type='submit'>Capture</button>
     </form>
 }
