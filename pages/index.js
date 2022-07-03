@@ -1,23 +1,53 @@
 import { useEffect, useState, useContext } from 'react';
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import PokemonCardContainer from '../components/PokemonCardContainer.js'
 import CapturePopup from '../components/CapturePopup';
 import CapturedPokemonCardContainer from '../components/CapturedPokemonCardContainer';
 import {AppContext} from './AppContext.js'
+import Router, { useRouter } from 'next/router';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home(props) {
 
-  /* const [currentPokemon, setCurrentPokemon] = useState({});
-  const [capturedPokemon, setCapturedPokemon] = useState([]);
-  const [showDetails, setShowDetails] = useState(false);
-  const [showPopup, setShowPopup] = useState(false); */
+  const defaultLimit = 20;
+  const offsetMin = 0;
+  const offsetMax = 878;
+  const data = props.data;
+  
 
-  /* const context = useContext(AppContext);
-  console.log(`context: ${context}`);
-  console.log(context);
-  console.log(props.temp) */
+  const { query } = useRouter();
+  const [ prevData, setPrevData ] = useState(data)
+  const [ pokemon, setPokemon ] = useState(data.results);
+  const [ hasMore, setHasMore] = useState(true);
+
+  const getMore = async () => {
+
+    const regex = /limit=\d*/;
+    const newNext = prevData.next;
+
+    if (offsetMax - pokemon.length < defaultLimit){
+      newNext = prevData.next.replace(regex, `limit=${offsetMax - pokemon.length}`)
+      setHasMore(false);
+    }
+       
+    if (offsetMax - pokemon.length != 0) {
+    const res = await fetch(
+      newNext
+    ); 
+
+    if (res != null) {
+
+      const newPokemon = await res.json();
+      setPrevData(newPokemon);
+  
+      setPokemon(p => {
+        console.log(p)
+        return [...p, ...newPokemon.results]
+      })};}
+  }
 
   return (
     <>
@@ -32,6 +62,13 @@ export default function Home(props) {
       capturedPokemon={props.capturedPokemon}
       setCapturedPokemon={props.setCapturedPokemon}/> : ''}
 
+      <InfiniteScroll
+        next={getMore}
+        dataLength={pokemon.length}
+        hasMore={hasMore}
+        loader={<h3> Loading...</h3>}
+        endMessage={<h4>Nothing more to show</h4>}>
+
       <PokemonCardContainer 
       currentPokemon={props.currentPokemon}
       setCurrentPokemon={props.setCurrentPokemon}
@@ -40,10 +77,8 @@ export default function Home(props) {
       showPopup={props.showPopup}
       setShowPopup={props.setShowPopup}
       capturedPokemon={props.capturedPokemon}
-      data={props.data}/>
-
-      
-      
+      data={pokemon}/>
+      </InfiniteScroll>
     </>
   )
 }
@@ -51,19 +86,13 @@ export default function Home(props) {
 // this get called on every request
 export async function getServerSideProps(context) {
   
-  const listEndPoint = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0';
+  const listEndPoint = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`;
   const res = await fetch(listEndPoint);
   const data = await res.json();
-
-  /* const [details] = await Promise.all(data.results.map( async url => {
-    const res = await fetch(url);
-    return await res.json()}
-    )); */
 
   return {
     props: {
       data,
-      /* details */
     },
   }
 }
