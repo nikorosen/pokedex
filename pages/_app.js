@@ -11,8 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [showDetails, setShowDetails] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
-  return <Layout>
-    <Component {...pageProps}
+  return <Component {...pageProps}
       currentPokemon={currentPokemon}
       setCurrentPokemon={setCurrentPokemon}
       capturedPokemon={capturedPokemon}
@@ -22,7 +21,6 @@ function MyApp({ Component, pageProps }) {
       showPopup={showPopup}
       setShowPopup={setShowPopup}
     />
-  </Layout>
 
 }
 

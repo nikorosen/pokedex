@@ -6,11 +6,13 @@
     flex-flow: column;
     align-items: center;
     text-align: start;
-    border: 1px red solid;
     z-index: 1;
-    margin: 1em;
+    margin: .5em;
     overflow: hidden;
     border-radius: 1em;
+    width: 45%;
+    background: white;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.05);
 }
 
 .card h2 {

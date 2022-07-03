@@ -1,6 +1,7 @@
 import PokemonCard from './PokemonCard';
-import Details from './Details';
+import Details from './PokemonDetails';
 import { useEffect } from 'react';
+import styles from './PokemonCardContainer.module.css'
 
 export default function PokemonCardContainer(props) {
 
@@ -11,13 +12,13 @@ export default function PokemonCardContainer(props) {
 
     const pokemon = props.data;
 
-    return <div>
-        {props.showDetails ? <Details
+    return <div className={styles.container}>
+        {/* {props.showDetails ? <Details
             showPopup={props.showPopup}
             setShowPopup={props.setShowPopup}
             currentPokemon={props.currentPokemon}
             capturedPokemon={props.capturedPokemon}
-            setCapturedPokemon={props.setCapturedPokemon} /> : ''}
+            setCapturedPokemon={props.setCapturedPokemon} /> : ''} */}
         {pokemon.map(i => <PokemonCard key={`${i['url']}${Math.random}`} 
         setShowDetails={props.setShowDetails} 
         setCurrentPokemon={props.setCurrentPokemon} 

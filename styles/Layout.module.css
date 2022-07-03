@@ -1,0 +1,16 @@
+@value colors: "../styles/colors.css";
+@value background from colors;
+
+.main {
+    background: background;
+    width: 100%;
+    align-items: center;
+    padding-top: 1em;
+   
+}
+
+.logo {
+    width: 50%;
+    height: auto;
+    margin: 1em;
+}

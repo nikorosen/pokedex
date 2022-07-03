@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import Image from 'next/image';
 import styles from './PokemonCard.module.css'
+import Router, { useRouter } from 'next/router';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -8,7 +9,7 @@ export default function PokemonCard(props) {
 
     function handleClick() {
         props.setCurrentPokemon(data)
-        props.setShowDetails(true)
+        Router.push('/details')
     }
 
     const {data, error} = useSWR(props.endpoint, fetcher)

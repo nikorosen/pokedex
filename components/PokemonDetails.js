@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import {useEffect} from 'react';
 import getAllStorage from '../util/getAllStorage';
+import styles from './PokemonDetails.module.css'
+import Link from 'next/link'
 
 export default function Details(props) {
 
     useEffect(() => {
-        if (props.currentPokemon !== {}) {
-            console.log(data)
         
             props.setCapturedPokemon(getAllStorage())
             const interval = setInterval(() => {
@@ -14,11 +14,12 @@ export default function Details(props) {
             }, 1000);
 
             return () => clearInterval(interval);
-        }}, []);
+        }, []);
 
     const data = props.currentPokemon;
     
     const order =  data.order;
+    const name = data.name;
     const height = data.height;
     const types = data.types.map(i => i.type.name);
     const weight = data.weight;
@@ -26,13 +27,18 @@ export default function Details(props) {
     const [hp, attack, defense, sattack, sdefense, speed] = data.stats.map(i => i.base_stat);
     
 
-    return <div>
-        <Image src={img} width="100" height="100"></Image>
-        <div><h2>About</h2>
+    return <div className={styles.main}>
+        <div className={styles.image} style={{background: styles[types[0]]}}>
+        <span className={styles.back}><Link href='/'> 🠔 back </Link></span>
+            <Image src={img} width="100" height="100"></Image>
+        <h2>#{order} {name}</h2>{}
+       </div>
+        
+        <div className={styles.about}><h3>About</h3>
         <table>
         <tr>
             <th>Types(s):</th> 
-            <td>{types.map(i => <span key={i}> {i} </span>)}</td> 
+            <td>{types.map((i, index) => <span key={i}> {index != 0 ? <>&nbsp;•</> : '' } {i} </span> )}</td> 
         </tr>
         <tr>
             <th>Weight:</th>
@@ -43,8 +49,8 @@ export default function Details(props) {
             <td>{(height * 0.1).toFixed(1)} m</td>
         </tr>
         </table></div>
-        <div>
-        <h2>Base Stats</h2>
+        <div className={styles.stats}>
+        <h3>Base Stats</h3>
         <table>
         <tr>
             <th>HP:</th>
@@ -72,7 +78,7 @@ export default function Details(props) {
             <td> {speed}</td>
         </tr></table></div>
         
-        { props.capturedPokemon.some( e => e.order == order) ? <><h2>Capture Information</h2>
+        { props.capturedPokemon.some( e => e.order == order) ? <div className={styles.about}><h3>Capture Information</h3>
         <table>
         { props.capturedPokemon.filter(i => i.order == order).map( i => <table>
            { i.nickname != '' ? <tr>
@@ -88,9 +94,9 @@ export default function Details(props) {
                 <td>{i.capturedLevel}</td>
             </tr>
             </table>) }
-        </table></> : ''}
+        </table></div> : ''}
         
         { !props.capturedPokemon.some( e => e.order == order) ? 
-        <button onClick={e => props.setShowPopup(!props.showPopup)}>Capture</button> : '' }
+        <button className={styles.btn} onClick={e => props.setShowPopup(!props.showPopup)}>Capture</button> : '' }
     </div>
 }
