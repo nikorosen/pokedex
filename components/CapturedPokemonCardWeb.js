@@ -2,8 +2,6 @@ import Image from 'next/image'
 
 export default function CapturedPokemonCard(props) {
 
-    console.log(props.pokemon)
-
     const data = props.pokemon;
     const img = data.sprites.other['official-artwork'].front_default;
     const order = data.pokemon;

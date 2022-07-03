@@ -16,7 +16,6 @@ export default function Home(props) {
   const offsetMin = 0;
   const offsetMax = 878;
   const data = props.data;
-  
 
   const { query } = useRouter();
   const [ prevData, setPrevData ] = useState(data)

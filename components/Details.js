@@ -28,7 +28,7 @@ export default function Details(props) {
         </tr>
         <tr>
             <th>Weight:</th>
-            <td>{weight} kg</td> 
+            <td>{(weight * 0.1).toFixed(1)} kg</td> 
         </tr>
         <tr>
             <th>Height:</th> 
@@ -67,10 +67,10 @@ export default function Details(props) {
         { props.capturedPokemon.some( e => e.order == order) ? <><h2>Capture Information</h2>
         <table>
         { props.capturedPokemon.map( i => <table>
-            <tr>
+           { i.nickname != '' ? <tr>
                 <th>Nickname: </th>
-                <td>{i.nickname}</td>
-            </tr>
+                <td>{i.nickname}</td> 
+            </tr> : '' }
             <tr>
                 <th>Captured on: </th>
                 <td>{i.capturedDate}</td>
@@ -82,6 +82,7 @@ export default function Details(props) {
             </table>) }
         </table></> : ''}
         
-        <button onClick={e => props.setShowPopup(!props.showPopup)}>Capture</button>
+        { !props.capturedPokemon.some( e => e.order == order) ? 
+        <button onClick={e => props.setShowPopup(!props.showPopup)}>Capture</button> : '' }
     </div>
 }
