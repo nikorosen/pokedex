@@ -11,7 +11,7 @@ export default function Details(props) {
             props.setCapturedPokemon(getAllStorage())
             const interval = setInterval(() => {
             props.setCapturedPokemon(getAllStorage())
-            }, 5000);
+            }, 1000);
 
             return () => clearInterval(interval);
         }}, []);

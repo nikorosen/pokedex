@@ -19,9 +19,11 @@ export default function PokemonCard(props) {
     const types = data.types.map(i => i.type.name);
     const img = data.sprites.other['official-artwork'].front_default;
 
+    console.log(types)
+
     return <div className={styles.card} onClick={handleClick}>
-        <Image src={img} width="100" height="100"></Image>
+        <div className={styles['card-img']} style={{background: styles[types[0]]}}><Image src={img} width="100" height="100"></Image></div>
         <h2>#{data.order} {data.name}</h2>
-        {types.map(i => <span key={i}> {i} </span> )} 
+        <span className={styles['types']}>{types.map((i, index) => <span key={i}> {index != 0 ? <>&nbsp;•</> : '' } {i} </span> )}</span>
     </div>
 }

@@ -59,7 +59,8 @@ export default function Home(props) {
       {props.showPopup ? <CapturePopup
       currentPokemon={props.currentPokemon}
       capturedPokemon={props.capturedPokemon}
-      setCapturedPokemon={props.setCapturedPokemon}/> : ''}
+      setCapturedPokemon={props.setCapturedPokemon}
+      setShowPopup={props.setShowPopup}/> : ''}
 
       <InfiniteScroll
         next={getMore}
