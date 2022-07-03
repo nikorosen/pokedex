@@ -10,6 +10,7 @@ export default function Details(props) {
 
     const data = props.currentPokemon;
     
+    const order =  data.order;
     const height = data.height;
     const types = data.types.map(i => i.type.name);
     const weight = data.weight;
@@ -63,20 +64,22 @@ export default function Details(props) {
             <td> {speed}</td>
         </tr></table></div>
         
-        { true ? <><h2>Capture Information</h2>
+        { props.capturedPokemon.some( e => e.order == order) ? <><h2>Capture Information</h2>
         <table>
+        { props.capturedPokemon.map( i => <table>
             <tr>
                 <th>Nickname: </th>
-                <td></td>
+                <td>{i.nickname}</td>
             </tr>
             <tr>
                 <th>Captured on: </th>
-                <td></td>
+                <td>{i.capturedDate}</td>
             </tr>
             <tr>
                 <th>Captured level: </th>
-                <td></td>
+                <td>{i.capturedLevel}</td>
             </tr>
+            </table>) }
         </table></> : ''}
         
         <button onClick={e => props.setShowPopup(!props.showPopup)}>Capture</button>

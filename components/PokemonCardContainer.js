@@ -10,13 +10,13 @@ export default function PokemonCardContainer(props) {
     }, [props.currentPokemon])
 
     const pokemon = props.data.results;
-    let show = true;
 
     return <div>
         {props.showDetails ? <Details
             showPopup={props.showPopup}
             setShowPopup={props.setShowPopup}
-            currentPokemon={props.currentPokemon} /> : ''}
+            currentPokemon={props.currentPokemon}
+            capturedPokemon={props.capturedPokemon} /> : ''}
         {pokemon.map(i => <PokemonCard key={i['url']} setShowDetails={props.setShowDetails} setCurrentPokemon={props.setCurrentPokemon} endpoint={i['url']} />)}
 
     </div>

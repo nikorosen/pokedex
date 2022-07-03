@@ -4,7 +4,7 @@ export default function CapturedPokemonCard(props) {
 
     console.log(props.pokemon)
 
-    const data = props.pokemon.pokemon;
+    const data = props.pokemon;
     const img = data.sprites.other['official-artwork'].front_default;
     const order = data.pokemon;
     const types = data.types.map(i => i.type.name);

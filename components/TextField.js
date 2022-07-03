@@ -15,34 +15,36 @@ export default function TextField(props) {
     // extend on Pokemon object and store in database
     function handleSubmit(e) {
         e.preventDefault();
-        
-        const newCapturedPokemon = {
-            pokemon: props.currentPokemon,
+
+        const capturedInfo = {
             nickname: nameRef.current.value,
             capturedDate: dateRef.current.value,
             capturedLevel: levelRef.current.value
         }
 
-        props.setCapturedPokemon(props.capturedPokemon.concat(newCapturedPokemon));
-        console.log(props.capturedPokemon)
+        const newCapturedPokemon = { ...props.currentPokemon, ...capturedInfo }
+
+        props.setCapturedPokemon(props.capturedPokemon.concat(
+            newCapturedPokemon
+        ));
     }
 
     return <form onSubmit={handleSubmit}>
-        <input 
-            type="text" 
+        <input
+            type="text"
             id={'nickname'}
             placeholder="Nickname"
-            ref={nameRef}/>
-        <input 
-            type="date" 
+            ref={nameRef} />
+        <input
+            type="date"
             id={'capturedDate'}
             placeholder="Captured Date"
-            ref={dateRef}/>
-        <input 
-            type="text" 
+            ref={dateRef} />
+        <input
+            type="text"
             id={'capturedLevel'}
             placeholder="Captured Level"
-            ref={levelRef}/>
+            ref={levelRef} />
         <button type='submit'>Capture</button>
     </form>
 }

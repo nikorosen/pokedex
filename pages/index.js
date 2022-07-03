@@ -39,6 +39,7 @@ export default function Home(props) {
       setShowDetails={props.setShowDetails}
       showPopup={props.showPopup}
       setShowPopup={props.setShowPopup}
+      capturedPokemon={props.capturedPokemon}
       data={props.data}/>
 
       

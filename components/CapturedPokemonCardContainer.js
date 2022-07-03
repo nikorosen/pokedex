@@ -6,7 +6,7 @@ export default function CapturedPokemonCardContainer(props) {
     return <>
     <ul>
     { props.capturedPokemon.map( i => <CapturedPokemonCard 
-        key={`${i.pokemon.order} ' ' ${i.nickname}_${Math.random()}`}
+        key={`${i.order} ' ' ${i.nickname}_${Math.random()}`}
         pokemon={i}/> ) }
     </ul>
     
@@ -20,7 +20,7 @@ export default function CapturedPokemonCardContainer(props) {
     </thead>
     <tbody>
     { props.capturedPokemon.map( i => <CapturedPokemonCardWeb 
-        key={`${i.pokemon.order} ' ' ${i.nickname}_${Math.random()}`}
+        key={`${i.order} ' ' ${i.nickname}_${Math.random()}`}
         pokemon={i}/> )
     }
     </tbody>
