@@ -1,0 +1,54 @@
+@value colors: "../styles/colors.css";
+@value rock,ghost,steel,water,grass,psychic,ice,dark,fairy,normal,fighting,flying,poison,ground,bug,fire,electric,dragon,darkgray,mediumgray,lightgray,background,pokemonred from colors; 
+
+.main {
+    display: flex;
+    width: 100%;
+    margin: .5rem 0 .5rem 0;
+}
+
+
+
+.main td {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 1rem;
+    padding: .5rem;
+}
+
+.pokemon {
+    display: flex;
+    flex-flow: row wrap;
+    
+}
+
+.pokemon h3 {
+    font-size: 1rem;
+    line-height: 1rem;
+    margin: 0;
+}
+
+.info {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin-left: 1rem;
+}
+
+.types {
+    font-size: 1rem;
+    color: mediumgray;
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
+.noname {
+    color: lightgray;
+}
