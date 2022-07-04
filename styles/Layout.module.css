@@ -1,17 +1,17 @@
 @value colors: "../styles/colors.css";
-@value background from colors;
+@value background, pokemonred from colors;
 
-.main {
+.main header {
+    display: flex;
+    flex-flow: row wrap;
     background: background;
     width: 100%;
-    align-items: center;
-    padding-top: 1em;
 }
 
 .logo {
-    width: 50%;
-    height: auto;
-    margin: 1em;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .captured {
@@ -25,4 +25,37 @@
     z-index: 2;
     background: white;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+}
+
+.captured-desktop {
+    display: none;
+    flex-flow: row nowrap;
+    align-items: center;
+    background: pokemonred;
+    color: background;
+    border-radius: 1rem;
+    width: 11rem;
+    padding: .2rem;
+    height: min-content;
+}
+
+@media only screen and (min-width: 768px) {
+    .captured {
+        display: none;
+    }
+
+    .captured-desktop {
+        display: flex;
+    }
+
+    .main header {
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2.5rem 0 2.5rem;
+    }
+
+    .logo {
+        width: min-content;
+    }
 }
