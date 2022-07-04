@@ -1,26 +1,9 @@
 import Image from 'next/image';
-import {useEffect} from 'react';
-import getAllStorage from '../util/getAllStorage';
 import styles from './PokemonDetails.module.css'
 import Link from 'next/link'
-import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import "@fortawesome/fontawesome-svg-core/styles.css";
 
 export default function Details(props) {
 
-    /* useEffect(() => {
-        
-            props.setCapturedPokemon(getAllStorage())
-            const interval = setInterval(() => {
-            props.setCapturedPokemon(getAllStorage())
-            }, 1000);
-
-            return () => clearInterval(interval);
-        }, []); */
-
-
-        
     const data = props.currentPokemon;
     
     const order =  data.order;
@@ -30,7 +13,6 @@ export default function Details(props) {
     const weight = data.weight;
     const img = data.sprites.other['official-artwork'].front_default;
     const [hp, attack, defense, sattack, sdefense, speed] = data.stats.map(i => i.base_stat);
-    
 
     return <div className={styles.main}>
         <div className={styles.image} style={{background: styles[types[0]]}}>

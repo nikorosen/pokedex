@@ -1,9 +1,10 @@
 import CapturedPokemonCard from './CapturedPokemonCard'
 import CapturedPokemonCardWeb from './CapturedPokemonCardWeb'
+import styles from './CapturedPokemonCardContainer.module.css'
 
 export default function CapturedPokemonCardContainer(props) {
-    return <>
-        <ul>
+    return <div className={styles.main}>
+        <ul className={styles.card}>
             {props.capturedPokemon.map(i => <CapturedPokemonCard
                 key={`${i.order} ' ' ${i.nickname}_${Math.random()}`}
                 pokemon={i} />)}
@@ -24,5 +25,5 @@ export default function CapturedPokemonCardContainer(props) {
                 }
             </tbody>
         </table>
-    </>
+    </div>
 }

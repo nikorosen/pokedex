@@ -4,10 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import PokemonCardContainer from '../components/PokemonCardContainer.js'
-import CapturePopup from '../components/CapturePopup';
-import CapturedPokemonCardContainer from '../components/CapturedPokemonCardContainer';
-import {AppContext} from './AppContext.js'
-import Router, { useRouter } from 'next/router';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Layout from '../components/Layout';
 
@@ -18,7 +14,6 @@ export default function Home(props) {
   const offsetMax = 878;
   const data = props.data;
 
-  const { query } = useRouter();
   const [ prevData, setPrevData ] = useState(data)
   const [ pokemon, setPokemon ] = useState(data.results);
   const [ hasMore, setHasMore] = useState(true);
