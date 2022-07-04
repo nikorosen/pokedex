@@ -58,12 +58,6 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {props.showPopup ? <CapturePopup
-      currentPokemon={props.currentPokemon}
-      capturedPokemon={props.capturedPokemon}
-      setCapturedPokemon={props.setCapturedPokemon}
-      setShowPopup={props.setShowPopup}/> : ''}
-
       <InfiniteScroll
         next={getMore}
         dataLength={pokemon.length}

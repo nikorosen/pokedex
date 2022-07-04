@@ -1,4 +1,8 @@
 import { useRef } from "react";
+import styles from './CapturePopup.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 /**
  * TextField component to submit and store records of Pokemon captures
@@ -28,11 +32,14 @@ export default function CapturePopup(props) {
         props.setShowPopup(false);
     }
 
-    return <div>
+    return <>
+    <div className={styles.lightbox}/>
+    <div className={styles.main}>
+    <div className={styles.back}><span onClick={e => props.setShowPopup(false)}><FontAwesomeIcon icon={faTimesCircle}/></span> </div>
     
     <h2>Capturing {props.currentPokemon.name}</h2>
     <form onSubmit={handleSubmit}>
-        <input
+        <input 
             type="text"
             id={'nickname'}
             placeholder="Nickname"
@@ -51,7 +58,8 @@ export default function CapturePopup(props) {
             placeholder="Captured Level"
             ref={levelRef} 
             required/>
-        <button type='submit'>Capture</button>
+        <button className={styles.btn} type='submit'>Capture</button>
     </form>
     </div>
+    </>
 }

@@ -1,0 +1,75 @@
+@value colors: "../styles/colors.css";
+@values pokemonred, lightgray, mediumgray from colors;
+
+.main {
+    position: fixed;
+    top: 20vh;
+    left: 0;
+    right: 0;
+    margin: 1em;
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    z-index: 3;
+}
+
+.lightbox {
+    content: 'test';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.5);
+    z-index: 2;
+} 
+
+.main h2 {
+    width: 100%;
+    margin: 0;
+}
+
+.main form {
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    row-gap: .5rem;
+}
+
+.main form * {
+    width: 100%;
+    padding: .5rem;
+
+}
+
+.main input {
+    height: 2rem;
+    color: mediumgray;
+    border: 2px lightgray solid;
+    border-radius: .5rem;
+}
+
+.main input::placeholder {
+    color: mediumgray;
+}
+
+.btn {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    background: pokemonred;
+    color: background;
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.back {
+    font-size: 1.25rem;
+    width: 100%;
+    padding-right: .5rem;
+    text-align: end;
+    color: mediumgray;
+}

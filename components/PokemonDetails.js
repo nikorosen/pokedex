@@ -3,10 +3,13 @@ import {useEffect} from 'react';
 import getAllStorage from '../util/getAllStorage';
 import styles from './PokemonDetails.module.css'
 import Link from 'next/link'
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 export default function Details(props) {
 
-    useEffect(() => {
+    /* useEffect(() => {
         
             props.setCapturedPokemon(getAllStorage())
             const interval = setInterval(() => {
@@ -14,8 +17,10 @@ export default function Details(props) {
             }, 1000);
 
             return () => clearInterval(interval);
-        }, []);
+        }, []); */
 
+
+        
     const data = props.currentPokemon;
     
     const order =  data.order;
@@ -29,7 +34,7 @@ export default function Details(props) {
 
     return <div className={styles.main}>
         <div className={styles.image} style={{background: styles[types[0]]}}>
-        <span className={styles.back}><Link href='/'> 🠔 back </Link></span>
+        <span className={styles.back}> <Link href='/' passHref={true}> 🡄</Link> </span>
             <Image src={img} width="100" height="100"></Image>
         <h2>#{order} {name}</h2>{}
        </div>

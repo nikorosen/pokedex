@@ -8,6 +8,7 @@
     flex-flow: column;
     row-gap: 1.5rem;
     min-height: 100vh;
+    margin-bottom: 1em;
 }
 
 .image {
@@ -62,6 +63,7 @@ justify-content: center;
 }
 
 .back{
+    
     color: background;
     font-size: 1.25rem;
     width: 100%;
