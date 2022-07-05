@@ -9,7 +9,9 @@
     row-gap: 1.5rem;
     min-height: 100vh;
     margin-bottom: 1em;
+
 }
+
 
 .image {
 padding: 1rem 0 1rem 0;
@@ -63,24 +65,41 @@ justify-content: center;
 }
 
 .back{
-    
     color: background;
     font-size: 1.25rem;
     width: 100%;
     padding-left: 1rem;
 }
 
+.back:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+
 @media only screen and (min-width: 768px) {
     .main {
         background: white;
         font-size: .75rem;
         position: fixed;
-        width: 25%;
+        width: 30%;
         top: 10vh;
-        min-height: 80vh;
+        min-height: 70vh;
         right: 1rem;
         border-radius: 1rem;
         overflow: hidden;
         box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+        animation: slide .5s ease;
     }
+
+    @keyframes slide {
+        0% {
+            width: 0;
+        }
+    
+        100% {
+            width: 30%;
+        }
+    }
+    
 }

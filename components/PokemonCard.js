@@ -8,14 +8,15 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function PokemonCard(props) {
 
     function handleClick() {
-
-        console.log(data)
-        console.log(props.currentPokemon)
-
-        if (props.isMobile) {
+        
+            if (props.isMobile) {
             props.setCurrentPokemon(data)
             Router.push('/details') }
         else {
+            
+            if (typeof window !== 'undefined') 
+                localStorage.setItem('currentPokemon',JSON.stringify(data));
+
                 props.setShowDetails(true)
                 props.setCurrentPokemon(data)
             
@@ -26,6 +27,12 @@ export default function PokemonCard(props) {
 
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
+
+    /* if (typeof window !== "undefined") {
+        document.cookie = `currentPokemon=${JSON.stringify(data)}`;
+        console.log('stored cookie')
+        console.log(document.cookie)
+    } */
 
     const types = data.types.map(i => i.type.name);
     const img = data.sprites.other['official-artwork'].front_default;

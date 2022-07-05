@@ -4,6 +4,7 @@ import styles from './CapturedPokemonCardContainer.module.css'
 
 export default function CapturedPokemonCardContainer(props) {
     return <div className={styles.main}>
+        <h2>Captured Pokemon</h2>
         <ul>
             {props.capturedPokemon.map(i => <CapturedPokemonCard
                 key={`${i.order} ' ' ${i.nickname}_${Math.random()}`}

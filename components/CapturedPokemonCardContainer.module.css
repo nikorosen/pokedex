@@ -2,7 +2,8 @@
 @value mediumgray,lightgray,background,pokemonred from colors; 
 
 .main {
-    margin: 1rem;
+    padding: 1rem;
+    background: background;
 }
 
 .main ul {
@@ -16,6 +17,7 @@
     width: 100%;
     justify-items: space-around;
     display: none;
+    background: background;
 
 }
 

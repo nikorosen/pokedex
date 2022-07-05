@@ -7,7 +7,7 @@ import {useEffect} from 'react'
 
 function MyApp({ Component, pageProps }) {
 
-  const [currentPokemon, setCurrentPokemon] = useState({});
+  const [currentPokemon, setCurrentPokemon] = useState();
   const [capturedPokemon, setCapturedPokemon] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }) {
   }
   
   useEffect(() => {
+
     window.addEventListener('resize', handleWindowSizeChange);
     return () => {
         window.removeEventListener('resize', handleWindowSizeChange);

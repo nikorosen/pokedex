@@ -1,14 +1,15 @@
 import Head from 'next/head'
 import CapturedPokemonCardContainer from '../components/CapturedPokemonCardContainer'
 import { useEffect } from 'react';
-import getAllStorage from '../util/getAllStorage';
+
 import Layout from '../components/Layout';
+import getAllCapturedPokemon from '../util/getAllCapturedPokemon';
 
 export default function Captured(props) {
 
     // wait until localstorage can be accessed
     useEffect(() => {
-        props.setCapturedPokemon(getAllStorage())
+        props.setCapturedPokemon(getAllCapturedPokemon())
     }
         , []);
 

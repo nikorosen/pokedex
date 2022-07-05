@@ -2,19 +2,29 @@ import Image from 'next/image';
 import styles from './PokemonDetails.module.css'
 import Link from 'next/link'
 import {useEffect} from 'react';
-import getAllStorage from '../util/getAllStorage';
+import Router from 'next/router';
+import getAllCapturedPokemon from '../util/getAllCapturedPokemon';
 
 export default function Details(props) {
 
-    useEffect(() => {
-        
-        props.setCapturedPokemon(getAllStorage())
+    useEffect(() => {  
+        props.setCapturedPokemon(getAllCapturedPokemon())
         const interval = setInterval(() => {
-        props.setCapturedPokemon(getAllStorage())
+        props.setCapturedPokemon(getAllCapturedPokemon())
         }, 1000);
 
         return () => clearInterval(interval);
     }, []);
+
+
+    function handleClick(e) {
+        if (props.isMobile){
+            Router.push('/')
+        }
+        else {
+            props.setShowDetails(!props.showDetails);
+        }
+    }
 
     const data = props.currentPokemon;
     
@@ -26,10 +36,9 @@ export default function Details(props) {
     const img = data.sprites.other['official-artwork'].front_default;
     const [hp, attack, defense, sattack, sdefense, speed] = data.stats.map(i => i.base_stat);
     
-
     return <div className={styles.main}>
         <div className={styles.image} style={{background: styles[types[0]]}}>
-        <span className={styles.back}> <Link href='/' passHref={true}> 🡄</Link> </span>
+        <a className={styles.back} onClick={e => handleClick()}> 🡄 </a>
             <Image src={img} width="100" height="100"></Image>
         <h2>#{order} {name}</h2>{}
        </div>
