@@ -2,19 +2,18 @@
 @values pokemonred, lightgray, mediumgray from colors;
 
 .main {
-    position: fixed;
-    top: 20vh;
-    left: 0;
-    right: 0;
-    margin: 1em;
     background: white;
     border-radius: 1rem;
     padding: 1rem;
     z-index: 3;
+    height: min-content;
+    width: 60%;
 }
 
 .lightbox {
-    content: 'test';
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -72,4 +71,10 @@
     padding-right: .5rem;
     text-align: end;
     color: mediumgray;
+}
+
+@media only screen and (min-width: 768px) {
+    .main {
+        width: 30%;
+    }
 }

@@ -32,8 +32,7 @@ export default function CapturePopup(props) {
         props.setShowPopup(false);
     }
 
-    return <>
-    <div className={styles.lightbox}/>
+    return <div className={styles.lightbox}>
     <div className={styles.main}>
     <div className={styles.back}><span onClick={e => props.setShowPopup(false)}><FontAwesomeIcon icon={faTimesCircle}/></span> </div>
     
@@ -61,5 +60,5 @@ export default function CapturePopup(props) {
         <button className={styles.btn} type='submit'>Capture</button>
     </form>
     </div>
-    </>
+    </div>
 }

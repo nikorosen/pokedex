@@ -6,6 +6,8 @@ import styles from '../styles/Home.module.css'
 import PokemonCardContainer from '../components/PokemonCardContainer.js'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Layout from '../components/Layout';
+import PokemonDetails from '../components/PokemonDetails'
+import CapturePopup from '../components/CapturePopup';
 
 export default function Home(props) {
 
@@ -53,6 +55,12 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {props.showPopup ? <CapturePopup
+      currentPokemon={props.currentPokemon}
+      capturedPokemon={props.capturedPokemon}
+      setCapturedPokemon={props.setCapturedPokemon}
+      setShowPopup={props.setShowPopup}/> : ''}
+
       <InfiniteScroll
         next={getMore}
         dataLength={pokemon.length}
@@ -69,8 +77,19 @@ export default function Home(props) {
       setShowPopup={props.setShowPopup}
       capturedPokemon={props.capturedPokemon}
       setCapturedPokemon={props.setCapturedPokemon}
+      isMobile={props.isMobile}
       data={pokemon}/>
       </InfiniteScroll>
+
+      {props.showDetails ? <PokemonDetails
+        showDetails={props.showDetails}
+        setShowDetails={props.showDetails}
+        showPopup={props.showPopup}
+        setShowPopup={props.setShowPopup}
+        currentPokemon={props.currentPokemon}
+        capturedPokemon={props.capturedPokemon}
+        setCapturedPokemon={props.setCapturedPokemon} /> : ''}
+
     </div>
     </Layout>
   )
