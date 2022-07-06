@@ -3,16 +3,21 @@ import styles from './CapturedPokemonCardWeb.module.css'
 import Types from './Types';
 import capitalizeFirstLetter from '../util/capitalizeFirstLetter';
 
-export default function CapturedPokemonCard(props) {
+/**
+ * Card component to display captured Pokemon data
+ * (Desktop only)
+ * @param {pokemon} : a capturedPokemon Object
+ */
+export default function CapturedPokemonCardWeb(props) {
 
-    const data = props.pokemon;
+    const data = props.capturedPokemon;
     const name = capitalizeFirstLetter(data.name);
     const img = data.sprites.other['official-artwork'].front_default;
     const order = data.order;
     const types = data.types.map(i => i.type.name);
-    const nickname = props.pokemon.nickname;
-    const capturedDate = props.pokemon.capturedDate;
-    const capturedLevel = props.pokemon.capturedLevel;
+    const nickname = data.nickname;
+    const capturedDate = data.capturedDate;
+    const capturedLevel = data.capturedLevel;
 
     return <tr className={styles.main}>
 

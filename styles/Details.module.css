@@ -1,0 +1,7 @@
+@value colors: "../styles/colors.css";
+@value background from colors;
+
+.main {
+    background: background;
+    min-height: 100vh;
+}

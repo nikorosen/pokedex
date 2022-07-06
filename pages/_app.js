@@ -6,7 +6,7 @@ import {useEffect} from 'react'
  * App wrapper for init state variables
  * @prop {[currentPokemon, setCurrentPokemon]} : Object that tracks current selection
  * @prop {[prevPokemon, setPrevPokemon]} : Object that tracks last selection
- * @prop {[capturedPokemon, setCapturedPokemon]} : Array of Pokemon Objects currently captured Pokemon (stored in localStorage)
+ * @prop {[capturedPokemonList, setCapturedPokemonList]} : Array of Pokemon Objects currently captured Pokemon (stored in localStorage)
  * @prop {[showDetail, setShowDetails]} : Bool that tracks detail display state
  * @prop {[showPopup, setShowPopup]} : Bool that tracks popup display state
  * @prop {[isMobile, setIsMobile]} : Bool that tracks screen size 
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
 
   const [currentPokemon, setCurrentPokemon] = useState();
   const [prevPokemon, setPrevPokemon] = useState();
-  const [capturedPokemon, setCapturedPokemon] = useState([]);
+  const [capturedPokemonList, setCapturedPokemonList] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isMobile, setIsMobile] = useState(determineIsMobile);
@@ -48,8 +48,8 @@ function MyApp({ Component, pageProps }) {
       setCurrentPokemon={setCurrentPokemon}
       prevPokemon={prevPokemon}
       setPrevPokemon={setPrevPokemon}
-      capturedPokemon={capturedPokemon}
-      setCapturedPokemon={setCapturedPokemon}
+      capturedPokemonList={capturedPokemonList}
+      setCapturedPokemonList={setCapturedPokemonList}
       showDetails={showDetails}
       setShowDetails={setShowDetails}
       showPopup={showPopup}

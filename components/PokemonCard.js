@@ -10,12 +10,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 /**
  * Card component to fetch and display Pokemon information
- * @param {endpoint} : url that contains information about a single pokemon
- * @param {currentPokemon} : state prop that keeps track of current selection
- * @param {setCurrentPokemon} : state prop that set current selection
- * @param {prevPokemon} : state prop that keeps track of last selection
- * @param {setPrevPokemon} : state prop that sets last selection
- * @param {setShowDetails} : state prop that sets detail display state
+ * @param {endpoint} : url that directs to a Pokemon Object
  */
 export default function PokemonCard(props) {
 

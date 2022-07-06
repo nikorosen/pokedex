@@ -91,6 +91,7 @@ justify-content: center;
         box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
         animation: slide .5s ease;
         row-gap: .5rem;
+        padding-bottom: 1rem;
     }
 
     .slide-out {

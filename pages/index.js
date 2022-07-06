@@ -64,7 +64,6 @@ export default function Home(props) {
     <div className={styles.main}>
       <Head>
         <title>Pokedex</title>
-        <link rel="icon" href="/pokeball.png" />
       </Head>
 
       {props.showPopup ? <CapturePopup
