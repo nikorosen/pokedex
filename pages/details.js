@@ -5,25 +5,13 @@ import Router from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 
-
+/**
+ * Pokemon details page that displays currentPokemon data 
+ * (mobile only)
+ */
 export default function Details(props) {
 
   useEffect(() => {
-
-    /*       if (typeof window !== 'undefined') {
-            const pokemon = JSON.parse(localStorage.getItem('currentPokemon'));
-            console.log(pokemon)
-            console.log(props.currentPokemon)
-            
-            if (props.currentPokemon == {}) {
-              props.setCurrentPokemon(pokemon);
-              console.log('just set the bugga')
-              console.log(props.currentPokemon)
-            }
-    
-            
-          } */
-
     if (!props.isMobile) {
       Router.push('/');
     }

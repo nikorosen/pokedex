@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
 import Head from 'next/head'
-import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import PokemonCardContainer from '../components/PokemonCardContainer.js'
@@ -15,18 +14,19 @@ const OFFSET_MAX = 878;
 
 /**
  * Home page
- * @param {endpoint} : url that contains information about a single pokemon
- * @param {currentPokemon} : state prop that keeps track of current selection
- * @param {setCurrentPokemon} : state prop that set current selection
- * @param {prevPokemon} : state prop that keeps track of last selection
- * @param {setPrevPokemon} : state prop that sets last selection
- * @param {setShowDetails} : state prop that sets detail display state
+ * @prop {[pokemonList, setPokemonList]} : Array of all fetched Pokemon Objects
+ * @prop {[prevPokemonList, setPrevPokemonList]} : Array of Pokemon Objects for use in infinite scrolling logic
+ * @prop {[hasMore, setHasMore]} : Bool that tracks fetch progress in the dataset
  */
 export default function Home(props) {
 
+  const [prevPokemonList, setPrevPokemonList] = useState([])
+  const [pokemonList, setPokemonList] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+
   useEffect(()=>{
-    props.setPrevData(props.data);
-    props.setPokemon(props.data.results);
+    setPrevPokemonList(props.data);
+    setPokemonList(props.data.results);
   },[])
 
   /** fetches more data to feed to infinite scroll, 
@@ -34,26 +34,26 @@ export default function Home(props) {
    * */
   const getMore = async () => {
 
-    const newNext = props.prevData.next;
+    const newNext = prevPokemonList.next;
 
     // adjust limit if at the end of data set
-    if (OFFSET_MAX - props.pokemon.length < DEFAULT_LIMIT){
+    if (OFFSET_MAX - pokemonList.length < DEFAULT_LIMIT){
       const regex = /limit=\d*/;
-      newNext = props.prevData.next.replace(regex, `limit=${OFFSET_MAX - props.pokemon.length}`)
+      newNext = prevPokemonList.next.replace(regex, `limit=${OFFSET_MAX - pokemonList.length}`)
       setHasMore(false);
     }
        
     // if not at the end of data set
-    if (OFFSET_MAX - props.pokemon.length != 0) {
+    if (OFFSET_MAX - pokemonList.length != 0) {
     const res = await fetch(
       newNext
     ); 
 
     if (res != null) {
       const newPokemon = await res.json();
-      props.setPrevData(newPokemon);
+      setPrevPokemonList(newPokemon);
   
-      props.setPokemon(p => {
+      setPokemonList(p => {
         console.log(p)
         return [...p, ...newPokemon.results]
       })};}
@@ -72,12 +72,12 @@ export default function Home(props) {
 
       <InfiniteScroll
         next={getMore}
-        dataLength={props.pokemon.length}
-        hasMore={props.hasMore}
+        dataLength={pokemonList.length}
+        hasMore={hasMore}
         loader={<Image src="/pokeball-loading.gif" height="100" width="100" layout='fixed' objectFit='contain'/>}
         endMessage={<h4>Nothing more to show</h4>}>
 
-      <PokemonCardContainer {...props} data={props.pokemon}/>
+      <PokemonCardContainer {...props} data={pokemonList}/>
       </InfiniteScroll>
 
       { (props.showDetails && !props.isMobile) ? <PokemonDetails
