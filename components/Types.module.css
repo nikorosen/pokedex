@@ -1,0 +1,9 @@
+@value colors: "../styles/colors.css";
+@value mediumgray from colors; 
+
+.types {
+    color: mediumgray;
+    display: flex;
+    flex-flow: row;   
+    width: 100%;
+}

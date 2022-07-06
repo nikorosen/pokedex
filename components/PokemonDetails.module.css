@@ -84,12 +84,18 @@ justify-content: center;
         position: fixed;
         width: 30%;
         top: 10vh;
-        min-height: 70vh;
+        min-height: min-content;
         right: 1rem;
         border-radius: 1rem;
         overflow: hidden;
         box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
         animation: slide .5s ease;
+        row-gap: .5rem;
+    }
+
+    .slide-out {
+        animation: slide-out .5s ease;
+
     }
 
     @keyframes slide {
@@ -99,6 +105,17 @@ justify-content: center;
     
         100% {
             width: 30%;
+        }
+    }
+
+    @keyframes slide-out {
+        0% {
+            width: 30%;
+        }
+    
+        100% {
+            width: 0;
+            display: none;
         }
     }
     

@@ -10,16 +10,13 @@ export default function PokemonCardContainer(props) {
         //console.log(props.currentPokemon)
     }, [props.currentPokemon])
 
-    const pokemon = props.data;
+    const data = props.data;
 
     return <div className={styles.container} style={props.isMobile? {width: '100%'} : props.showDetails ? {width: '72.5%'} : {width: '100%'}}>
 
-        {pokemon.map(i => <PokemonCard key={`${i['url']}${Math.random}`} 
-        showDetails={props.showDetails}
-        setShowDetails={props.setShowDetails} 
-        setCurrentPokemon={props.setCurrentPokemon} 
+        {data.map(i => <PokemonCard key={`${i['url']}${Math.random}`} 
         endpoint={i['url']}
-        isMobile={props.isMobile} />)}
-
+        {...props}
+        />)}
     </div>
 }

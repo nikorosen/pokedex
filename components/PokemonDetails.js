@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import styles from './PokemonDetails.module.css'
 import Link from 'next/link'
+import Types from './Types';
 import {useEffect} from 'react';
 import Router from 'next/router';
 import getAllCapturedPokemon from '../util/getAllCapturedPokemon';
+
 
 export default function Details(props) {
 
@@ -22,7 +24,8 @@ export default function Details(props) {
             Router.push('/')
         }
         else {
-            props.setShowDetails(!props.showDetails);
+            e.target.parentElement.parentElement.classList.toggle(styles['slide-out'])
+            props.setShowDetails(!props.showDetails)            
         }
     }
 
@@ -38,7 +41,7 @@ export default function Details(props) {
     
     return <div className={styles.main}>
         <div className={styles.image} style={{background: styles[types[0]]}}>
-        <a className={styles.back} onClick={e => handleClick()}> 🡄 </a>
+        <a className={styles.back} onClick={e => handleClick(e)}> {props.isMobile? <>🡄</> : <>🡆</>} </a>
             <Image src={img} width="100" height="100"></Image>
         <h2>#{order} {name}</h2>{}
        </div>
@@ -47,7 +50,7 @@ export default function Details(props) {
         <table>
         <tr>
             <th>Types(s):</th> 
-            <td>{types.map((i, index) => <span key={i}> {index != 0 ? <>&nbsp;•</> : '' } {i} </span> )}</td> 
+            <td><Types types={types}/></td> 
         </tr>
         <tr>
             <th>Weight:</th>

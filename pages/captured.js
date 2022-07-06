@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import CapturedPokemonCardContainer from '../components/CapturedPokemonCardContainer'
 import { useEffect } from 'react';
-
 import Layout from '../components/Layout';
 import getAllCapturedPokemon from '../util/getAllCapturedPokemon';
 
@@ -20,9 +19,6 @@ export default function Captured(props) {
             <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <CapturedPokemonCardContainer
-            capturedPokemon={props.capturedPokemon}
-            showPopup={props.showPopup}
-            setShowPopup={props.setShowPopup} />
+        <CapturedPokemonCardContainer {...props} />
     </Layout>
 }

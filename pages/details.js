@@ -8,51 +8,37 @@ import Head from 'next/head'
 
 export default function Details(props) {
 
-    useEffect(()=>{
+  useEffect(() => {
 
-/*       if (typeof window !== 'undefined') {
-        const pokemon = JSON.parse(localStorage.getItem('currentPokemon'));
-        console.log(pokemon)
-        console.log(props.currentPokemon)
-        
-        if (props.currentPokemon == {}) {
-          props.setCurrentPokemon(pokemon);
-          console.log('just set the bugga')
-          console.log(props.currentPokemon)
-        }
+    /*       if (typeof window !== 'undefined') {
+            const pokemon = JSON.parse(localStorage.getItem('currentPokemon'));
+            console.log(pokemon)
+            console.log(props.currentPokemon)
+            
+            if (props.currentPokemon == {}) {
+              props.setCurrentPokemon(pokemon);
+              console.log('just set the bugga')
+              console.log(props.currentPokemon)
+            }
+    
+            
+          } */
 
-        
-      } */
-
-      if (!props.isMobile){
-        Router.push('/');
-      }
-
-    },[props.isMobile])
-
-    function handleNotFound() {
-      return <div style={{display: 'flex', flexFlow: 'column wrap', height: '100vh', alignContent: 'center', justifyContent: 'center', textAlign: 'center'}}>Page not found... <u><Link href='/'>Go back</Link></u></div>
+    if (!props.isMobile) {
+      Router.push('/');
     }
+  }, [props.isMobile])
 
+  function handleNotFound() {
+    return <div style={{ display: 'flex', flexFlow: 'column wrap', height: '100vh', alignContent: 'center', justifyContent: 'center', textAlign: 'center' }}>Page not found... <u><Link href='/'>Go back</Link></u></div>
+  }
 
-    return <div>
+  return <div>
     <Head>
-        <title>Pokedex - Details</title>
+      <title>Pokedex - Details</title>
     </Head>
 
-    {props.showPopup ? <CapturePopup
-      currentPokemon={props.currentPokemon}
-      capturedPokemon={props.capturedPokemon}
-      setCapturedPokemon={props.setCapturedPokemon}
-      setShowPopup={props.setShowPopup}/> : ''}
-
-    {props.currentPokemon ? <PokemonDetails
-        showPopup={props.showPopup}
-        setShowPopup={props.setShowPopup}
-        setShowDetails={props.setShowDetails}
-        currentPokemon={props.currentPokemon}
-        capturedPokemon={props.capturedPokemon}
-        setCapturedPokemon={props.setCapturedPokemon}
-        isMobile={props.isMobile} /> : handleNotFound()}
-    </div>
+    {props.showPopup ? <CapturePopup {...props} /> : ''}
+    {props.currentPokemon ? <PokemonDetails {...props} /> : handleNotFound()}
+  </div>
 }

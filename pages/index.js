@@ -9,38 +9,51 @@ import Layout from '../components/Layout';
 import PokemonDetails from '../components/PokemonDetails'
 import CapturePopup from '../components/CapturePopup';
 
+// api fetch constants
+const DEFAULT_LIMIT = 20;
+const OFFSET_MAX = 878;
+
+/**
+ * Home page
+ * @param {endpoint} : url that contains information about a single pokemon
+ * @param {currentPokemon} : state prop that keeps track of current selection
+ * @param {setCurrentPokemon} : state prop that set current selection
+ * @param {prevPokemon} : state prop that keeps track of last selection
+ * @param {setPrevPokemon} : state prop that sets last selection
+ * @param {setShowDetails} : state prop that sets detail display state
+ */
 export default function Home(props) {
 
-  const defaultLimit = 20;
-  const offsetMin = 0;
-  const offsetMax = 878;
-  const data = props.data;
+  useEffect(()=>{
+    props.setPrevData(props.data);
+    props.setPokemon(props.data.results);
+  },[])
 
-  const [ prevData, setPrevData ] = useState(data)
-  const [ pokemon, setPokemon ] = useState(data.results);
-  const [ hasMore, setHasMore] = useState(true);
-
+  /** fetches more data to feed to infinite scroll, 
+   *  sets Pokemon state variable
+   * */
   const getMore = async () => {
 
-    const regex = /limit=\d*/;
-    const newNext = prevData.next;
+    const newNext = props.prevData.next;
 
-    if (offsetMax - pokemon.length < defaultLimit){
-      newNext = prevData.next.replace(regex, `limit=${offsetMax - pokemon.length}`)
+    // adjust limit if at the end of data set
+    if (OFFSET_MAX - props.pokemon.length < DEFAULT_LIMIT){
+      const regex = /limit=\d*/;
+      newNext = props.prevData.next.replace(regex, `limit=${OFFSET_MAX - props.pokemon.length}`)
       setHasMore(false);
     }
        
-    if (offsetMax - pokemon.length != 0) {
+    // if not at the end of data set
+    if (OFFSET_MAX - props.pokemon.length != 0) {
     const res = await fetch(
       newNext
     ); 
 
     if (res != null) {
-
       const newPokemon = await res.json();
-      setPrevData(newPokemon);
+      props.setPrevData(newPokemon);
   
-      setPokemon(p => {
+      props.setPokemon(p => {
         console.log(p)
         return [...p, ...newPokemon.results]
       })};}
@@ -55,46 +68,29 @@ export default function Home(props) {
       </Head>
 
       {props.showPopup ? <CapturePopup
-      currentPokemon={props.currentPokemon}
-      capturedPokemon={props.capturedPokemon}
-      setCapturedPokemon={props.setCapturedPokemon}
-      setShowPopup={props.setShowPopup}/> : ''}
+      {...props}/> : ''}
 
       <InfiniteScroll
         next={getMore}
-        dataLength={pokemon.length}
-        hasMore={hasMore}
-        loader={<h3> Loading...</h3>}
+        dataLength={props.pokemon.length}
+        hasMore={props.hasMore}
+        loader={<Image src="/pokeball-loading.gif" height="100" width="100" layout='fixed' objectFit='contain'/>}
         endMessage={<h4>Nothing more to show</h4>}>
 
-      <PokemonCardContainer 
-      currentPokemon={props.currentPokemon}
-      setCurrentPokemon={props.setCurrentPokemon}
-      showDetails={props.showDetails}
-      setShowDetails={props.setShowDetails}
-      showPopup={props.showPopup}
-      setShowPopup={props.setShowPopup}
-      capturedPokemon={props.capturedPokemon}
-      setCapturedPokemon={props.setCapturedPokemon}
-      isMobile={props.isMobile}
-      data={pokemon}/>
+      <PokemonCardContainer {...props} data={props.pokemon}/>
       </InfiniteScroll>
 
       { (props.showDetails && !props.isMobile) ? <PokemonDetails
-        showDetails={props.showDetails}
-        setShowDetails={props.setShowDetails}
-        showPopup={props.showPopup}
-        setShowPopup={props.setShowPopup}
-        currentPokemon={props.currentPokemon}
-        capturedPokemon={props.capturedPokemon}
-        setCapturedPokemon={props.setCapturedPokemon} /> : ''}
+        {...props} /> : ''}
 
     </div>
     </Layout>
   )
 }
 
-// this get called on every request
+/**  this get called on every request
+ * @return : intial Pokemon data set 
+*/ 
 export async function getServerSideProps(context) {
   
   const listEndPoint = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`;

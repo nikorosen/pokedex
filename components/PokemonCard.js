@@ -1,45 +1,72 @@
-import useSWR from 'swr';
 import Image from 'next/image';
+import Router from 'next/router';
+import useSWR from 'swr';
+import Types from './Types';
 import styles from './PokemonCard.module.css'
-import Router, { useRouter } from 'next/router';
+import capitalizeFirstLetter from '../util/capitalizeFirstLetter';
 
+// fetch utility
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
+/**
+ * Card component to fetch and display Pokemon information
+ * @param {endpoint} : url that contains information about a single pokemon
+ * @param {currentPokemon} : state prop that keeps track of current selection
+ * @param {setCurrentPokemon} : state prop that set current selection
+ * @param {prevPokemon} : state prop that keeps track of last selection
+ * @param {setPrevPokemon} : state prop that sets last selection
+ * @param {setShowDetails} : state prop that sets detail display state
+ */
 export default function PokemonCard(props) {
 
-    function handleClick() {
-        
-            if (props.isMobile) {
-            props.setCurrentPokemon(data)
-            Router.push('/details') }
-        else {
-            
-            if (typeof window !== 'undefined') 
-                localStorage.setItem('currentPokemon',JSON.stringify(data));
+    /**
+    * handle the logic when a PokemonCard component is clicked
+    * @param {e} : click event
+    */
+    function handleClick(e) {
 
-                props.setShowDetails(true)
-                props.setCurrentPokemon(data)
-            
+        // keep track of previous selection and update active selection styling
+        if (props.prevPokemon) {
+            document.getElementById(props.prevPokemon.order).classList.toggle(styles.active);
+            console.log(props.prevPokemon)
+        }
+
+        document.getElementById(data.order).classList.toggle(styles.active);
+        props.setPrevPokemon(data)
+
+        // if mobile, route it to details page
+        // if desktop, display details on index.js
+        if (props.isMobile) {
+            props.setCurrentPokemon(data)
+            Router.push('/details')
+        }
+        else {
+            if (typeof window !== 'undefined')
+                localStorage.setItem('currentPokemon', JSON.stringify(data));
+
+            props.setShowDetails(true)
+            props.setCurrentPokemon(data)
         }
     }
 
-    const {data, error} = useSWR(props.endpoint, fetcher)
-
+    // fetch data from endpoint
+    const { data, error } = useSWR(props.endpoint, fetcher)
     if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+    if (!data) return <></>
 
-    /* if (typeof window !== "undefined") {
-        document.cookie = `currentPokemon=${JSON.stringify(data)}`;
-        console.log('stored cookie')
-        console.log(document.cookie)
-    } */
-
+    const order = data.order;
+    const name = capitalizeFirstLetter(data.name);
     const types = data.types.map(i => i.type.name);
     const img = data.sprites.other['official-artwork'].front_default;
 
-    return <div style={props.isMobile? {width: '45%'} : props.showDetails ? {width: '25%'} : {width: '20%'}} className={styles.card} onClick={handleClick}>
-        <div className={styles['card-img']} style={{background: styles[types[0]]}}><Image src={img} width="100" height="100"></Image></div>
-        <h2>#{data.order} {data.name}</h2>
-        <span className={styles['types']}>{types.map((i, index) => <span key={i}> {index != 0 ? <>&nbsp;•</> : '' } {i} </span> )}</span>
+    return <div id={order} className={styles.main} style={props.isMobile ? { width: '45%' } : props.showDetails ? { width: '25%' } : { width: '20%' }} onClick={e => handleClick(e)}>
+        
+        <div className={styles.image} style={{ background: styles[types[0]] }}>
+            <Image src={img} width="100" height="100"/>
+        </div>
+        
+        <h2>#{String(order).padStart(3, '0')} {name}</h2>
+        <Types types={types}/>
     </div>
 }
+
