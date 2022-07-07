@@ -27,7 +27,7 @@ export default function CapturedPokemonCardWeb(props) {
             </div>
             <div className={styles.info}>
                 <h3>#{String(order).padStart(3, '0')} {name}</h3>
-                <Types types={types} /></div>
+                <span className={styles.types}><Types types={types} /></span></div>
         </td>
         <td>
             {nickname || <span className={styles.noname}>None</span>}

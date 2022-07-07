@@ -73,7 +73,7 @@ export default function Home(props) {
         next={getMore}
         dataLength={pokemonList.length}
         hasMore={hasMore}
-        loader={<Image src="/pokeball-loading.gif" height="100" width="100" layout='fixed' objectFit='contain'/>}
+        loader={<Image alt="loading" src="/pokeball-loading.gif" height="100" width="100" layout='fixed' objectFit='contain'/>}
         endMessage={<h4>Nothing more to show</h4>}>
 
       <PokemonCardContainer {...props} data={pokemonList}/>

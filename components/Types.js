@@ -7,6 +7,6 @@ import styles from './Types.module.css'
  */
 export default function Types(props) {
     return <div className={styles.types}>
-        {props.types.map((i, index) => <span key={i}> {index != 0 ? <>&nbsp;•</> : ''} {capitalizeFirstLetter(i)} </span>)}
+        {props.types.map((i, index) => <span key={i}> {index != 0 ? <>&nbsp;·</> : ''} {capitalizeFirstLetter(i)} </span>)}
     </div>
 }

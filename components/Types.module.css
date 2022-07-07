@@ -2,7 +2,7 @@
 @value mediumgray from colors; 
 
 .types {
-    color: mediumgray;
+    font-weight: 350;
     display: flex;
     flex-flow: row;   
     width: 100%;

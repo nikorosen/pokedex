@@ -4,7 +4,7 @@
 .main {
     display: flex;
     flex-flow: column;
-    align-items: center;
+    
     text-align: start;
     z-index: 1;
     margin: .5em;
@@ -13,6 +13,7 @@
     width: 45%;
     background: white;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.05);
+    padding-bottom: 1rem;
 }
 
 .active, .main:hover {
@@ -31,14 +32,16 @@
     width: 100%;
 }
 
-.main div {
-    padding: 0em 0 1em 1em;
-}
-
 .image {
     display: inherit;
     width: 100%;
-    justify-content: center;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.types {
+    color: mediumgray;
+    padding-left: 1rem;
 }
 
 @media only screen and (min-width: 768px) {
