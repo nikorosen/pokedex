@@ -1,4 +1,4 @@
-This app was built with Next.js
+Pokedex app built with JavaScript, React and Next.js.
 
 ## Getting Started
 
