@@ -1,4 +1,6 @@
-Pokedex app built with JavaScript, React and Next.js.
+![logo](public/pokedex-logo.png)
+
+An interactive Pokedex app built with JavaScript, React and Next.js.
 
 ## Getting Started
 
@@ -12,13 +14,13 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## To lint
+## To Lint
 
 ```bash
 npm run lint
 ```
 
-## To deploy
+## To Deploy
 
 To deploy locally:
 
