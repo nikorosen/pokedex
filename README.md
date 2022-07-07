@@ -1,7 +1,8 @@
 ![logo](public/pokedex-logo.png)
 
 An interactive Pokedex app built with JavaScript, React and Next.js.
-[https://nikorosenberg-pokedex.netlify.app/](View it live) in your browser 
+
+Follow the steps below to run locally, or [view it live](https://nikorosenberg-pokedex.netlify.app/) in your browser! 
 
 ## Getting Started
 
