@@ -13,7 +13,7 @@ export default function CapturePopup(props) {
     // extend on Pokemon Object and store in localStorage
     function handleSubmit(e) {
         e.preventDefault();
-        
+
         const localStorageKey = 'capturedPokemonList';
 
         const capturedInfo = {
@@ -51,6 +51,7 @@ export default function CapturePopup(props) {
                     type="text"
                     id={'nickname'}
                     placeholder="Nickname"
+                    maxlength="16"
                     ref={nameRef} />
                 <input
                     type="number"

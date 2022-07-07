@@ -1,3 +1,5 @@
+This app was built with Next.js
+
 ## Getting Started
 
 First, run the development server:

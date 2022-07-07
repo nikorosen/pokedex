@@ -13,7 +13,6 @@
     width: 45%;
     background: white;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.05);
-    transition: background .2s ease, width .2s ease;
 }
 
 .active, .main:hover {
