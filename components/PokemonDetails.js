@@ -53,12 +53,13 @@ export default function Details(props) {
     return <div className={styles.main}>
         <div className={styles.image} style={{ background: styles[types[0]] }}>
             <a className={styles.back} onClick={e => handleClick(e)}> {props.isMobile ? <>🡄</> : <>🡆</>} </a>
-            <Image src={img} width="100" height="100"></Image>
+            <Image alt={name} src={img} width="100" height="100"></Image>
             <h2>#{String(order).padStart(3, '0')} {name}</h2>{ }
         </div>
 
         <div className={styles.about}><h3>About</h3>
             <table>
+                <tbody>
                 <tr>
                     <th>Types(s):</th>
                     <td><Types types={types} /></td>
@@ -71,6 +72,7 @@ export default function Details(props) {
                     <th>Height:</th>
                     <td>{height} m</td>
                 </tr>
+                </tbody>
             </table>
         </div>
 
@@ -110,7 +112,7 @@ export default function Details(props) {
             <div className={styles.about}>
                 <h3>Capture Information</h3>
                 <table>
-                    {props.capturedPokemonList.filter(i => i.order == order).map(i => <table>
+                    {props.capturedPokemonList.filter(i => i.order == order).map(i => <table key={i}>
                         {i.nickname != '' ? <tr>
                             <th>Nickname: </th>
                             <td>{i.nickname}</td>

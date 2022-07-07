@@ -1,3 +1,5 @@
+![alt text](public\pokedex-logo.png)
+
 Pokedex app built with JavaScript, React and Next.js.
 
 ## Getting Started

@@ -23,7 +23,7 @@ export default function CapturedPokemonCardWeb(props) {
 
         <td className={styles.pokemon}>
             <div className={styles.image} style={{ background: styles[types[0]] }}>
-                <Image src={img} width="50%" height="50%" layout='responsive' objectfit='contain' />
+                <Image alt={name} src={img} width="50%" height="50%" layout='responsive' objectfit='contain' />
             </div>
             <div className={styles.info}>
                 <h3>#{String(order).padStart(3, '0')} {name}</h3>

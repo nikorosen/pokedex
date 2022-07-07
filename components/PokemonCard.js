@@ -57,7 +57,7 @@ export default function PokemonCard(props) {
     return <div id={order} className={styles.main} style={props.isMobile ? { width: '45%' } : props.showDetails ? { width: '25%' } : { width: '20%' }} onClick={e => handleClick(e)}>
         
         <div className={styles.image} style={{ background: styles[types[0]] }}>
-            <Image src={img} width="100" height="100"/>
+            <Image alt={name} src={img} width="100" height="100"/>
         </div>
         
         <h2>#{String(order).padStart(3, '0')} {name}</h2>

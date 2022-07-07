@@ -18,7 +18,7 @@ export default function CapturedPokemonCard(props) {
 
     return <li className={styles.main}>
         <li className={styles.image} style={{ background: styles[types[0]] }}>
-            <Image src={img} width="100" height="100" layout='responsive' objectFit='contain' />
+            <Image alt={name} src={img} width="100" height="100" layout='responsive' objectFit='contain' />
         </li>
         <li className={styles.info}><ul>
             <li className={styles.name}>

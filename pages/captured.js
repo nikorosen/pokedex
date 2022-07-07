@@ -14,8 +14,7 @@ export default function Captured(props) {
     // wait until localstorage can be accessed
     useEffect(() => {
         props.setCapturedPokemonList(getAllCapturedPokemon())
-    }
-        , []);
+    }, []);
 
     return <Layout>
         <div className={styles.main}>

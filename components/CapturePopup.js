@@ -51,7 +51,7 @@ export default function CapturePopup(props) {
                     type="text"
                     id={'nickname'}
                     placeholder="Nickname"
-                    maxlength="16"
+                    maxLength="16"
                     ref={nameRef} />
                 <input
                     type="number"
